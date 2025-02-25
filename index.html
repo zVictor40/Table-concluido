@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <header class="bg-primary text-white text-center p-3">
+        <h1>Site do Bolsa Família</h1>
+        <nav class="nav justify-content-center">
+            <a class="nav-link text-white" href="index.html">Início</a>
+            <a class="nav-link text-white" href="desenvolvedores.html">Desenvolvedores</a>
+            <a class="nav-link text-white" href="termosdeuso.html">Termos de Uso</a>
+        </nav> 
+    </header>
+
+    <main class="mt-4"> 
+        <section class="mb-4">
+            <h2 class="text-center">Cadastro para o Bolsa Família</h2>
+            <form id="cadastro-form" class="row g-3">
+                <div class="col-md-6">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" id="nome" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-success">Gravar</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2 class="text-center">Usuários Cadastrados</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <caption>Lista de Usuários</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-usuarios">
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                        <tr><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p>IFRN Campus Santa Cruz</p>
+        <p>Trabalho de Autoria Web</p>
+        <p>Prof. Marcelo Figueiredo Barbosa Júnior</p>
+        <p>Desenvolvido por: Fabrício Gabriel Maximino Gomes da Silva, João Victor Ferreira do Nascimento, Mateus Ribeiro Almeida</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("cadastro-form");
+            const tabelaUsuarios = document.getElementById("tabela-usuarios");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const nome = document.getElementById("nome").value.trim();
+                const email = document.getElementById("email").value.trim();
+
+                if (nome && email) {
+                    const linhas = tabelaUsuarios.getElementsByTagName("tr");
+
+                    for (let i = 0; i < linhas.length; i++) {
+                        let colunas = linhas[i].getElementsByTagName("td");
+                        if (colunas[0].innerText === "-" && colunas[1].innerText === "-") {
+                            colunas[0].innerText = nome;
+                            colunas[1].innerText = email;
+                            form.reset();
+                            return;
+                        }
+                    }
+
+                    alert("A tabela está cheia!");
+                } else {
+                    alert("Preencha todos os campos!");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
